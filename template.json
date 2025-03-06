@@ -1,0 +1,11 @@
+{
+    "author": "Kanta Bhattacharjee",
+    "classifications": [ "Web", "API", "CQRS" ],
+    "identity": "QuantaLabs.CQRSTemplate",
+    "name": "CQRS Web API Template",
+    "shortName": "clean-cqrs-api",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    }
+}
