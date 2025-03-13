@@ -39,7 +39,7 @@ namespace Application.Features.User.Commands.Delete
                 {
                     await _UnitOfWork.User.DeleteAsync(user);
                     await _UnitOfWork.SaveChangesAsync();
-                    return Response<bool>.Success(true, "User Updated Successfully");
+                    return Response<bool>.Success(true, "User Deleted Successfully");
                 }
             }
             catch (Exception e)

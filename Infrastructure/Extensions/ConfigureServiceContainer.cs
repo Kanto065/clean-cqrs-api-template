@@ -50,7 +50,7 @@ namespace Infrastructure.Extensions
         public static void AddNosqlRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
-            services
+            //services
         }
     }
 }

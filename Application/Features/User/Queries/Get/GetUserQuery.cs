@@ -9,7 +9,7 @@ using Shared.Wrappers;
 
 namespace Application.Features.User.Queries.Get
 {
-    public class GetUserQuery : IRequest<Response<GetUserQueryVm>>
+    public class GetUserQuery : IRequest<Response<GetUserQueryViewModel>>
     {
         public int Id { get; set; }
     }
