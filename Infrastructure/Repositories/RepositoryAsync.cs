@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Common;
+using Domain.Contracts;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
