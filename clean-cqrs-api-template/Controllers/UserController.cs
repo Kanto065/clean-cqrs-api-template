@@ -12,6 +12,7 @@ namespace clean_cqrs_api_template.Controllers
 {
     public class UserController : BaseApiController
     {
+        
 
         [HttpPost]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
@@ -43,6 +44,7 @@ namespace clean_cqrs_api_template.Controllers
         public async Task<IActionResult> GetAll()
         {
             GetAllUserQuery query = new GetAllUserQuery();
+            //var res = await 
             var response = await Mediator.Send(query);
             return Ok(response);
         }

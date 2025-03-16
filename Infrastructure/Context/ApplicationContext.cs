@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Common;
 using Domain.Entities;
+using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context
@@ -17,6 +18,21 @@ namespace Infrastructure.Context
         }
 
         public DbSet<User> Users { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            #region Soft delete setup
+            foreach (var type in modelBuilder.Model.GetEntityTypes())
+            {
+                if (typeof(BaseEntity).IsAssignableFrom(type.ClrType))
+                    modelBuilder.SetSoftDeleteFilter(type.ClrType);
+            }
+            #endregion
+
+            base.OnModelCreating(modelBuilder);
+        }
 
 
         public async Task<int> SaveChangesAsync()

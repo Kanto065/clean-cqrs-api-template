@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Features\User\Queries\GetAllNosql\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

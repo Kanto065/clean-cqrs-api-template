@@ -23,7 +23,7 @@ namespace Application.Features.User.Queries.Get
         {
             _UnitOfWork = unitOfWork;
             _logger = logger;
-            _validationError = [];
+            _validationError = new List<string>();
         }
 
         public async Task<Response<GetUserQueryViewModel>> Handle(GetUserQuery request, CancellationToken cancellationToken)
@@ -44,7 +44,7 @@ namespace Application.Features.User.Queries.Get
                     userModel.Email = user.Email;
                     userModel.Phone = user.Phone;
 
-                    return Response<GetUserQueryViewModel>.Success(userModel, "Returend user");
+                    return Response<GetUserQueryViewModel>.Success(userModel, "Returned user");
                 }
 
             }

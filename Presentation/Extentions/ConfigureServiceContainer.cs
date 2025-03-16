@@ -19,6 +19,7 @@ namespace Presentation.Extentions
             services.AddPersistenceRepositories();
             services.AddApplicationLayer();
             services.AddNosqlDbContext(mongoConnectionString, mongoDatabaseName);
+            services.AddNosqlRepositories();
 
             //services.AddSharedInfrastructure();
             //services.AddHttpContextAccessor();

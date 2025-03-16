@@ -10,6 +10,13 @@ namespace Application.Features.User.Queries.GetAll
 {
     public class GetAllUserQuery : IRequest<Response<IReadOnlyList<GetAllUserQueryVm>>>
     {
-        public bool IsActive { get; set; }
+    }
+
+    public class GetAllUserQueryVm
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

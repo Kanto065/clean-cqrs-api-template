@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Contracts;
+using Domain.Entities;
 using Infrastructure.Context;
 using Infrastructure.MongoDb;
 using Infrastructure.Repositories;
@@ -50,6 +51,7 @@ namespace Infrastructure.Extensions
         public static void AddNosqlRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            services.AddScoped<IMongoUnitOfWork, MongoUnitOfWork>();
             //services
         }
     }

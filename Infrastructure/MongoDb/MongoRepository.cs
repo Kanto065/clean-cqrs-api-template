@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Common;
 using Domain.Contracts;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Infrastructure.MongoDb
 {
-    public class MongoRepository<T> : IMongoRepository<T>
+    public class MongoRepository<T> : IMongoRepository<T> where T : BaseEntity
     {
         private readonly IMongoCollection<T> _collection;
+        //private readonly IMongoDatabase database;
 
-        public MongoRepository(IMongoDatabase database, string collectionName)
+        public MongoRepository(IMongoDatabase database)
         {
+            string collectionName = typeof(T).Name.ToLowerInvariant(); // Use class name as collection name
             _collection = database.GetCollection<T>(collectionName);
         }
 
