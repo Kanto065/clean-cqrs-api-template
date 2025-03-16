@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clean-cqrs-api-template", "clean-cqrs-api-template\clean-cqrs-api-template.csproj", "{3CABDA91-0F5A-4CFF-857F-2C1A5D3D4138}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "clean-cqrs-api-template\WebApi.csproj", "{3CABDA91-0F5A-4CFF-857F-2C1A5D3D4138}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{9D5042CB-C836-43DF-AA97-7B2A801ABC46}"
 EndProject
