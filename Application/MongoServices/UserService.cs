@@ -27,17 +27,17 @@ namespace Application.MongoServices
             return await _mongoUnitOfWork.User.GetAllAsync();
         }
 
-        public async Task<User> GetById(string id)
+        public async Task<User> GetById(int id)
         {
             return await _mongoUnitOfWork.User.GetByIdAsync(id);
         }
 
-        public async Task Update(string id, User user)
+        public async Task Update(int id, User user)
         {
             await _mongoUnitOfWork.User.UpdateAsync(id, user);
         }
 
-        public async Task Delete(string id)
+        public async Task Delete(int id)
         {
             await _mongoUnitOfWork.User.DeleteAsync(id);
         }

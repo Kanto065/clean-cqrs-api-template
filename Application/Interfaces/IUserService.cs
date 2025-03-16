@@ -11,8 +11,8 @@ namespace Application.Interfaces
     {
         Task Insert(User user);
         Task<ICollection<User>> GetAll();
-        Task Delete(string id);
-        Task Update(string id, User user);
-        Task<User> GetById(string id);
+        Task Delete(int id);
+        Task Update(int id, User user);
+        Task<User> GetById(int id);
     }
 }

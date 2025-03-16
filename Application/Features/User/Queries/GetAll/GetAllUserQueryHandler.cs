@@ -14,17 +14,20 @@ namespace Application.Features.User.Queries.GetAll
 {
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, Response<IReadOnlyList<GetAllUserQueryVm>>>
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetAllUserQueryHandler> _logger;
         private List<String> _validationError;
         private readonly IUserService _userServiceHandler;
 
         public GetAllUserQueryHandler(
             ILogger<GetAllUserQueryHandler> logger,
-            IUserService userServiceHandler)
+            IUserService userServiceHandler,
+            IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _validationError = [];
             _userServiceHandler = userServiceHandler;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Response<IReadOnlyList<GetAllUserQueryVm>>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
@@ -32,6 +35,7 @@ namespace Application.Features.User.Queries.GetAll
             try
             {
                 var allUser = await _userServiceHandler.GetAll();
+                //var allUser = _unitOfWork.User.AsNoTracking().ToList();
 
                 if (!allUser.Any())
                     return Response<IReadOnlyList<GetAllUserQueryVm>>.Fail("User not found");

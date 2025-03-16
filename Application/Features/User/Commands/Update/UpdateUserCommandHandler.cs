@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Application.Features.User.Commands.Create;
+using Application.Interfaces;
 using Domain.Contracts;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -19,12 +20,16 @@ namespace Application.Features.User.Commands.Update
         private readonly IUnitOfWork _UnitOfWork;
         private readonly ILogger<UpdateUserCommandHandler> _logger;
         private List<String> _validationError;
+        private readonly IUserService _userServiceHandler;
 
-        public UpdateUserCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateUserCommandHandler> logger)
+        public UpdateUserCommandHandler(IUnitOfWork unitOfWork,
+            ILogger<UpdateUserCommandHandler> logger,
+            IUserService userServiceHandler)
         {
             _UnitOfWork = unitOfWork;
             _logger = logger;
             _validationError = [];
+            _userServiceHandler = userServiceHandler;
         }
 
         public async Task<Response<int>> Handle(UpdateUserCommand command, CancellationToken cancellationToken)
@@ -33,19 +38,18 @@ namespace Application.Features.User.Commands.Update
             {
                 var user = await _UnitOfWork.User.GetByIdAsync(command.Id);
                 if (user is null)
-                {
-                    _validationError.Add("User not found");
                     return Response<int>.Fail("User not found", _validationError);
-                }
-                else
-                {
-                    user.Name = command.Name;
-                    user.Email = command.Email;
-                    user.Phone = command.Phone;
-                    await _UnitOfWork.User.UpdateAsync(user);
-                    await _UnitOfWork.SaveChangesAsync();
-                    return Response<int>.Success(user.Id, "User Updated Successfully");
-                }
+
+                user.Name = command.Name;
+                user.Email = command.Email;
+                user.Phone = command.Phone;
+                //await _UnitOfWork.User.UpdateAsync(user);
+                await _UnitOfWork.SaveChangesAsync();
+
+                await _userServiceHandler.Update(command.Id, user);
+
+                return Response<int>.Success(user.Id, "User Updated Successfully");
+                
             }
             catch (Exception e)
             {
